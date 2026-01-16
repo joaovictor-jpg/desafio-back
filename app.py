@@ -26,21 +26,6 @@ def health_check():
 
 @app.route('/api/classify', methods=['POST'])
 def classify_email():
-    """
-    Endpoint para classificar um email.
-    
-    Espera receber um JSON com:
-    {
-        "email_content": "conteúdo do email aqui"
-    }
-    
-    Retorna:
-    {
-        "category": "Produtivo" ou "Improdutivo",
-        "confidence": 0.95,
-        "processed_text": "texto pré-processado"
-    }
-    """
     try:
         data = request.get_json()
         
