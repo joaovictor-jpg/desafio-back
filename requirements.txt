@@ -1,13 +1,16 @@
 Flask==3.0.0
 flask-cors==4.0.0
+python-dotenv==1.0.0
+requests==2.31.0
 
+# Processamento de Texto e IA Local (Classificador)
 nltk==3.8.1
-
 transformers==4.35.2
 torch==2.1.1
 sentencepiece==0.1.99
 
-python-dotenv==1.0.0
-requests==2.31.0
-
+# Validação (Opcional, mas boa prática manter)
 pydantic==2.5.0
+
+# Geração de Resposta (Gemini) - ESTE É O NOVO
+google-generativeai
