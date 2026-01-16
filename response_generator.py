@@ -1,6 +1,3 @@
-"""
-Módulo para geração de respostas automáticas baseadas na classificação do email.
-"""
 import logging
 import os
 from transformers import pipeline
@@ -10,10 +7,8 @@ logger = logging.getLogger(__name__)
 
 
 class ResponseGenerator:
-    """Classe para gerar respostas automáticas para emails."""
     
     def __init__(self):
-        """Inicializa o gerador de respostas."""
         self.device = 0 if torch.cuda.is_available() else -1
         self.generator = None
         
@@ -31,16 +26,6 @@ class ResponseGenerator:
             logger.info("Usando templates de resposta como fallback")
     
     def _generate_with_template(self, email_content, category):
-        """
-        Gera resposta usando templates pré-definidos.
-        
-        Args:
-            email_content: Conteúdo do email original
-            category: Categoria do email (Produtivo ou Improdutivo)
-            
-        Returns:
-            Resposta sugerida
-        """
         email_lower = email_content.lower()
         
         if category == "Produtivo":
@@ -131,16 +116,6 @@ class ResponseGenerator:
                 )
     
     def _generate_with_ai(self, email_content, category):
-        """
-        Gera resposta usando modelo de IA (se disponível).
-        
-        Args:
-            email_content: Conteúdo do email original
-            category: Categoria do email (Produtivo ou Improdutivo)
-            
-        Returns:
-            Resposta sugerida
-        """
         if not self.generator:
             return self._generate_with_template(email_content, category)
         
@@ -182,16 +157,6 @@ class ResponseGenerator:
             return self._generate_with_template(email_content, category)
     
     def generate_response(self, email_content, category):
-        """
-        Gera uma resposta automática baseada no email e categoria.
-        
-        Args:
-            email_content: Conteúdo do email original
-            category: Categoria do email (Produtivo ou Improdutivo)
-            
-        Returns:
-            Resposta sugerida
-        """
         try:
             return self._generate_with_template(email_content, category)
             
