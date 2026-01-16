@@ -1,7 +1,3 @@
-"""
-Módulo de pré-processamento de texto usando NLP.
-Realiza limpeza, remoção de stop words, lemmatização, etc.
-"""
 import re
 import nltk
 from nltk.corpus import stopwords
@@ -31,7 +27,6 @@ except LookupError:
 
 
 class NLPProcessor:
-    """Classe para processamento de linguagem natural."""
     
     def __init__(self):
         self.stop_words = set(stopwords.words('portuguese'))
@@ -39,15 +34,6 @@ class NLPProcessor:
         self.lemmatizer = WordNetLemmatizer()
     
     def clean_text(self, text):
-        """
-        Remove caracteres especiais, URLs, emails, etc.
-        
-        Args:
-            text: Texto a ser limpo
-            
-        Returns:
-            Texto limpo
-        """
         if not text:
             return ""
         
@@ -68,39 +54,12 @@ class NLPProcessor:
         return text
     
     def remove_stop_words(self, tokens):
-        """
-        Remove stop words da lista de tokens.
-        
-        Args:
-            tokens: Lista de tokens
-            
-        Returns:
-            Lista de tokens sem stop words
-        """
         return [token for token in tokens if token not in self.stop_words]
     
     def lemmatize(self, tokens):
-        """
-        Aplica lemmatização nos tokens.
-        
-        Args:
-            tokens: Lista de tokens
-            
-        Returns:
-            Lista de tokens lemmatizados
-        """
         return [self.lemmatizer.lemmatize(token) for token in tokens]
     
     def preprocess(self, text):
-        """
-        Processa o texto completo: limpeza, tokenização, remoção de stop words e lemmatização.
-        
-        Args:
-            text: Texto original
-            
-        Returns:
-            Texto processado (como string)
-        """
         if not text:
             return ""
         
@@ -126,16 +85,6 @@ class NLPProcessor:
         return processed_text
     
     def extract_keywords(self, text, max_keywords=10):
-        """
-        Extrai palavras-chave do texto processado.
-        
-        Args:
-            text: Texto original
-            max_keywords: Número máximo de keywords a retornar
-            
-        Returns:
-            Lista de palavras-chave
-        """
         processed = self.preprocess(text)
         tokens = processed.split()
         

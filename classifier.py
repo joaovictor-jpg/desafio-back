@@ -1,7 +1,3 @@
-"""
-Módulo de classificação de emails usando IA (Hugging Face Transformers).
-Classifica emails como "Produtivo" ou "Improdutivo".
-"""
 import logging
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 import torch
@@ -11,15 +7,8 @@ logger = logging.getLogger(__name__)
 
 
 class EmailClassifier:
-    """Classe para classificação de emails usando IA."""
     
     def __init__(self, model_name="distilbert-base-uncased"):
-        """
-        Inicializa o classificador.
-        
-        Args:
-            model_name: Nome do modelo a ser usado (padrão: distilbert-base-uncased)
-        """
         self.nlp_processor = NLPProcessor()
         self.device = 0 if torch.cuda.is_available() else -1
         
@@ -37,15 +26,6 @@ class EmailClassifier:
             self.classifier = None
     
     def _classify_with_model(self, processed_text):
-        """
-        Classifica usando o modelo de IA.
-        
-        Args:
-            processed_text: Texto pré-processado
-            
-        Returns:
-            Tupla (categoria, confiança)
-        """
         if not self.classifier or not processed_text:
             return self._classify_with_keywords(processed_text)
         
@@ -91,15 +71,6 @@ class EmailClassifier:
             return self._classify_with_keywords(processed_text)
     
     def _classify_with_keywords(self, text):
-        """
-        Classificação baseada em palavras-chave (fallback).
-        
-        Args:
-            text: Texto a ser classificado
-            
-        Returns:
-            Tupla (categoria, confiança)
-        """
         if not text:
             return "Improdutivo", 0.5
         
@@ -134,15 +105,6 @@ class EmailClassifier:
             return "Improdutivo", 0.55
     
     def classify(self, email_content):
-        """
-        Classifica um email como Produtivo ou Improdutivo.
-        
-        Args:
-            email_content: Conteúdo do email a ser classificado
-            
-        Returns:
-            Dicionário com categoria, confiança e texto processado
-        """
         try:
             processed_text = self.nlp_processor.preprocess(email_content)
             
