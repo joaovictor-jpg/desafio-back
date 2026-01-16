@@ -60,22 +60,6 @@ def classify_email():
 
 @app.route('/api/analyze', methods=['POST'])
 def analyze_email():
-    """
-    Endpoint completo para analisar um email: classificar e gerar resposta.
-    
-    Espera receber um JSON com:
-    {
-        "email_content": "conteúdo do email aqui"
-    }
-    
-    Retorna:
-    {
-        "category": "Produtivo" ou "Improdutivo",
-        "confidence": 0.95,
-        "suggested_response": "resposta sugerida aqui",
-        "processed_text": "texto pré-processado"
-    }
-    """
     try:
         data = request.get_json()
         
