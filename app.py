@@ -20,7 +20,7 @@ def health_check():
     """Endpoint para verificar se a API está funcionando."""
     return jsonify({
         "status": "healthy",
-        "message": "API está funcionando corretamente"
+        "message": "API esta funcionando corretamente"
     }), 200
 
 
