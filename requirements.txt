@@ -1,0 +1,18 @@
+# Core Flask
+Flask==3.0.0
+flask-cors==4.0.0
+
+# NLP e Processamento de Texto
+nltk==3.8.1
+
+# Machine Learning e IA
+transformers==4.35.2
+torch==2.1.1
+sentencepiece==0.1.99
+
+# Utilitários
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Validação e parsing
+pydantic==2.5.0
