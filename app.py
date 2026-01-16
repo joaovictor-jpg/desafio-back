@@ -4,6 +4,7 @@ from flask_cors import CORS
 import logging
 from classifier import EmailClassifier
 from response_generator import ResponseGenerator
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -100,4 +101,5 @@ def analyze_email():
 
 if __name__ == '__main__':
     logger.info("Iniciando servidor Flask...")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get("PORT", 7860))
+    app.run(host='0.0.0.0', port=port, debug=False)
